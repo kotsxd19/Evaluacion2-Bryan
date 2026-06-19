@@ -23,7 +23,7 @@ app.use(cors({
 
 app.use(cookieParser())
 
-app.use(express())
+app.use(express.json())
 /*app.use("api/ejemplo", ejemploRouter) */
 app.use("/api/especialidades", EspecialidadesRouter)
 app.use("/api/pacienteRegistrer", pacienteRegistrerRouter)
