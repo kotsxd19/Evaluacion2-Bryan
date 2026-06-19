@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs"
 import jsonwebtoken from "jsonwebtoken"
 
-import pacientes from "../models/pacientes,js"
+import pacientes from "../models/pacientes.js"
 
 import { config } from "../../config.js"
 

@@ -6,7 +6,7 @@ const router = express.Router();
 router.route("/")
 .post(registrarPacienteController.registrar)
 
-route.route("/verifyCodeEmail")
+router.route("/verifyCodeEmail")
 .post(registrarPacienteController.verifyCode)
 
 export default router

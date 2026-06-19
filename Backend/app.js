@@ -11,6 +11,7 @@ import pacienteRouter from './src/router/pacienteController.js'
 import citasRouter from './src/router/citas.js'
 import expedienteRouter from './src/router/expediente.js'
 import equipoMedicoRouter from './src/router/equipos.js'
+import recuperacionContraseñaPaciente from './src/router/recuperacionContraseñaPaciente.js'
 
 
 const app = express()
@@ -24,18 +25,20 @@ app.use(cookieParser())
 
 app.use(express())
 /*app.use("api/ejemplo", ejemploRouter) */
-app.use("api/especialidades", EspecialidadesRouter)
-app.use("api/pacienteRegistrer", pacienteRegistrerRouter)
-app.use("api/logout", logoutRouter)
-app.use("api/loginpaciente", LoginPacienteRouter)
-app.use("api/paciente", pacienteRouter)
-app.use("api/citas", citasRouter)
-app.use("api/expediente", expedienteRouter)
-app.use("api/equiposMedicos", equipoMedicoRouter)
+app.use("/api/especialidades", EspecialidadesRouter)
+app.use("/api/pacienteRegistrer", pacienteRegistrerRouter)
+app.use("/api/logout", logoutRouter)
+app.use("/api/loginpaciente", LoginPacienteRouter)
+app.use("/api/paciente", pacienteRouter)
+app.use("/api/citas", citasRouter)
+app.use("/api/expediente", expedienteRouter)
+app.use("/api/equiposMedicos", equipoMedicoRouter)
+app.use("/api/recoveryPassword", recuperacionContraseñaPaciente);
 
 
 
 
 
-export default app
+
+export default app;
 

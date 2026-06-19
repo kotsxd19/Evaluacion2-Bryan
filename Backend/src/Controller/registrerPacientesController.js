@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer"
 import crypto from "crypto"
-import jsonerbtoken from "jsonwebtoekn"
+import jsonerbtoken from "jsonwebtoken"
 import bcryptjs from "bcryptjs"
 
 
@@ -60,6 +60,7 @@ registrarPacienteController.registrar = async (req, res) => {
 
     await newPaciente.save();
 
+
     const verificationCode = crypto.randomBytes(3).toString("hex")
 
     const tokenCode = JsonWebTokenError.sign(
@@ -96,6 +97,7 @@ registrarPacienteController.registrar = async (req, res) => {
             console.log("error" + error)
             return res.status(500).json({message: "Internal server error"})
     }
+}
 
     registrarPacienteController.verifyCode = async (req, res) =>{
         try{
@@ -122,7 +124,6 @@ registrarPacienteController.registrar = async (req, res) => {
             return res.status(500).json({message: "Internal server error"})
         }
     }
-}
 
    
 export default registrarPacienteController
