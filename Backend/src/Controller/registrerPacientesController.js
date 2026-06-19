@@ -2,6 +2,7 @@ import nodemailer from "nodemailer"
 import crypto from "crypto"
 import jsonerbtoken from "jsonwebtoken"
 import bcryptjs from "bcryptjs"
+import {config} from "../../config.js"
 
 
 import pacientes from "../models/pacientes.js"
@@ -63,7 +64,7 @@ registrarPacienteController.registrar = async (req, res) => {
 
     const verificationCode = crypto.randomBytes(3).toString("hex")
 
-    const tokenCode = JsonWebTokenError.sign(
+    const tokenCode = jsonerbtoken.sign(
         {email,verificationCode}, 
         config.JWT.secret,
         {expiresIn: "15m"}
@@ -104,7 +105,7 @@ registrarPacienteController.registrar = async (req, res) => {
             const {verificationCode} = req.body
 
             const token = req.cookies.verificationTokenCookie
-            const decoced = JsonWebTokenError.verify(token, config.JWT.secret)
+            const decoced = jsonerbtoken.verify(token, config.JWT.secret)
 
             const {email, verificationCode: storedCode} = decoced
 

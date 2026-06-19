@@ -18,21 +18,21 @@ ExpedienteController.postexpediente = async (req, res) => {
             MedicalNotes
         } = req.body
 
-    const newCitas = new expediente({
-        patient_id: req.file.filename,
+    const newExpediente = new expediente({
+        patient_id,
         diagnosis,
         medications,
         MedicalNotes
     })
 
-    await newCitas.save();
+    await newExpediente.save();
 
     res.json({message: "expediente guardados"})
 }
 
 //DELETE
 ExpedienteController.deleteexpediente = async (req, res) => {
-    await citas.findByIdAndDelete(req.params.id);
+    await expediente.findByIdAndDelete(req.params.id);
     res.json({message: "expediente eliminadas"})
 }
 
@@ -45,7 +45,7 @@ ExpedienteController.updateexpediente = async (req, res) => {
             MedicalNotes
         } = req.body
 
-        await citas.findByIdAndUpdate(req.params.id,{
+        await expediente.findByIdAndUpdate(req.params.id,{
             patient_id,
             diagnosis,
             medications,

@@ -56,8 +56,8 @@ pacientesController.updatePacientes = async (req, res) => {
         nameEmergencyContact
     },
     profilePhoto,
-    isVerified,
-    logingAttempts ,
+    isVerified, 
+    logingAttempts,
     timeOut},{new: true})
             res.json({message: "pacientes actualizadas"})
 }

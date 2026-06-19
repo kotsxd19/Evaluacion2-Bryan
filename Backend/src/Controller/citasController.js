@@ -21,8 +21,8 @@ citasMedicasController.postCitas = async (req, res) => {
         } = req.body
 
     const newCitas = new citas({
-        patient_id: req.file.filename,
-            especiality_id: req.file.filename,
+        patient_id,
+            especiality_id,
             appoimentDate,
             reason,
             status,
