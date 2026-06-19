@@ -19,7 +19,7 @@ ExpedienteController.postexpediente = async (req, res) => {
         } = req.body
 
     const newCitas = new expediente({
-        patient_id,
+        patient_id: req.file.filename,
         diagnosis,
         medications,
         MedicalNotes

@@ -32,7 +32,7 @@ equiposMedicosController.postEquipos = async (req, res) => {
     purchaseDate,
     maintenanceDate,
     condition,
-    image,
+    image: req.file.path,
     status,
     isAvailable,
     })
