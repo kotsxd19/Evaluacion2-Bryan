@@ -20,7 +20,30 @@ loginPacienteController.Login = async (req, res) => {
         const isMatch = await bcrypt.compare(password, userFound.password)
         if(!isMatch){
             userFound.loginAttempts = ( userFound.loginAttempts || 0) + 1
-        }
+        
+        
+        if(userFound.loginAttempts >= 5){
+            userFound.timeOut = Datenow() + 15 * 60 * 1000;
+            await userFound.save()
+            return res.status(403).json({message: "cuenta bloqueda"})
+           }
+
+
+
+            return res.status(403).json({message: "Contraseña incorrecta"})
+
+    }
+      userFound.loginAttempts= 0;
+        userFound.timeOut = null;
+        await userFound.save();
+
+            const token = jsonwebtoken.sign({
+            id: userFound._id, userType: "customer"},
+            config.JWT.secret,
+        {expiresInd: "30d"})
+
+        res.cookie("authCookie",token)
+        return res.status(200).json({messsage: "Login exitoso"})
 
     }catch(error){
         console.log("error" + error)
@@ -29,5 +52,5 @@ loginPacienteController.Login = async (req, res) => {
 }
 
 
-
+export default loginPacienteController
 

@@ -36,7 +36,7 @@ registrarPacienteController.registrar = async (req, res) => {
         return res.status(400).json({message: "El paciente ya existe"})
     }
 
-    const passwordHah =await bcryptjs.hash(password, 10)
+    const passwordHash =await bcryptjs.hash(password, 10)
 
     const newPaciente = new pacientes({
         name,

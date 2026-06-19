@@ -14,29 +14,15 @@ pacientesController.getpacientes = async (req, res) => {
     res.json(paciente)
 }
 
-//INSERT
-pacientesController.postPacientes = async (req, res) => {
-    const {
-            name,
-    lastName,
-    email,
-    password,
-    birthDate,
-    phone,
-    addres,
-    bloodType,
-    phoneEmergencyConctacts:   
-    {
-        phoneEmergency,
-        nameEmergencyContact
-    },
-    profilePhoto,
-    isVerified,
-    logingAttempts ,
-    timeOut
-        } = req.body
+//DELETE
+pacientesController.deletePacientes = async (req, res) => {
+    await pacientes.findByIdAndDelete(req.params.id);
+    res.json({message: "pacientes eliminadas"})
+}
 
-    const newEspecialidades = new pacientes({
+//UPDATE
+pacientesController.updatePacientes = async (req, res) => {
+    const {
     name,
     lastName,
     email,
@@ -54,22 +40,9 @@ pacientesController.postPacientes = async (req, res) => {
     isVerified,
     logingAttempts ,
     timeOut
-    })
+        } = req.body
 
-    await newEspecialidades.save();
-
-    res.json({message: "pacientes guardados"})
-}
-
-//DELETE
-pacientesController.deletePacientes = async (req, res) => {
-    await pacientes.findByIdAndDelete(req.params.id);
-    res.json({message: "pacientes eliminadas"})
-}
-
-//UPDATE
-pacientesController.updatePacientes = async (req, res) => {
-    const {name,
+        await pacientes.findByIdAndUpdate(req.params.id,{name,
     lastName,
     email,
     password,
@@ -85,13 +58,8 @@ pacientesController.updatePacientes = async (req, res) => {
     profilePhoto,
     isVerified,
     logingAttempts ,
-    timeOut
-        } = req.body
-
-        await pacientes.findByIdAndUpdate(req.params.id,{specialityName,
-            description,
-            isAvailable},{new: true})
+    timeOut},{new: true})
             res.json({message: "pacientes actualizadas"})
 }
 
-export default especialidadesController;
+export default pacientesController;
